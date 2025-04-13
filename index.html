@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasheswini's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1>Welcome to My Portfolio</h1>
+        <p>Hello! I’m Yasheswini, a dedicated web development student learning full-stack web development. I'm passionate about creating responsive and user-centric web applications using the MERN stack (MongoDB, Express.js, React, Node.js).</p>
+        <a href="#about" class="cta-btn">Learn More</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I’m currently studying full-stack web development and working on several projects to enhance my skills. I am passionate about coding and always excited to learn and apply new technologies to create innovative digital solutions.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <!-- Frontend Skills -->
+            <div class="skills-category">
+                <h3>Frontend</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                </ul>
+            </div>
+            
+            <!-- Backend Skills -->
+            <div class="skills-category">
+                <h3>Backend</h3>
+                <ul>
+                    <li>Node.js</li>
+                    <li>MongoDB</li>
+                    <li>Express.js</li>
+                </ul>
+            </div>
+            
+            <!-- Tools -->
+            <div class="skills-category">
+                <h3>Tools</h3>
+                <ul>
+                    <li>Git & GitHub</li>
+                    <li>REST APIs</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>DIGITAL NEST</h3>
+            <p>A Webpage for Electronic Gadgets using html,css,javascript,node.js and react.js</p>
+        </div>
+        <div class="project">
+            <h3>FOOD DELIVERY SYSTEM</h3>
+            <p> Designed using SQL databses with Data base management system.</p>
+        </div>
+        <div class="project">
+            <h3>DAILY JOURNAL</h3>
+            <p>A Webpage on our daily targets using html,css,express.js and mongodb</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Yasheswini. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+     <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("#contact form");
+    
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+    
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const message = form.querySelector("textarea").value;
+    
+            fetch("/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name, email, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Message sent successfully!");
+                    form.reset();
+                } else {
+                    alert("Failed to send message: " + data.error);
+                }
+            })
+            .catch(error => {
+                alert("An error occurred. Please try again later.");
+                console.error("Error:", error);
+            });
+        });
+    });
+</script>
+    
+</body>
+</html>
